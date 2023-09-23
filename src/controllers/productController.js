@@ -14,13 +14,13 @@ let productcontroller = (req, res) => {
     user.save()
         .then((d) => {
             res.status(200).json({
-                msg: " product registration successfully",
+                msg: " product uploaded successfull",
                 data: d
             })
         })
         .catch((e) => {
             res.status(200).json({
-                msg: "product not register data in DB",
+                msg: "product uploaded unsuccessfull ",
                 err: e
             })
         })
