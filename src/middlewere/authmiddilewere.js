@@ -10,9 +10,11 @@ let authMiddleware = (req, res, next) => {
 
         res.status(200).json({ msg: 'Unauthorized' })
     }
+    
     //  console.log("data--->",req.headers.authorization.split(" ")[1]);
 
     let token = req.headers.authorization.split(' ')[1];
+    
 
     try {
         //   console.log("decode---->",token)
@@ -27,6 +29,7 @@ let authMiddleware = (req, res, next) => {
             msg: 'unauthorized',
         });
     }
+    
 };
 
 let enduserAuth = (req, res, next) => {
@@ -40,9 +43,7 @@ let enduserAuth = (req, res, next) => {
 }
 
 let adminAuth = (req, res, next) => {
-
     // console.log("role--->",req.user.role)
-
     if (req.user.role !== 'admin') {
         res.status(403).json({
             msg: "Unauthorized"
@@ -53,4 +54,4 @@ let adminAuth = (req, res, next) => {
 }
 
 
-module.exports = { authMiddleware,enduserAuth,adminAuth }
+module.exports = { authMiddleware, enduserAuth, adminAuth }
