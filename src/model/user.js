@@ -20,7 +20,12 @@ let registerschema=new mongoose.Schema({
         unique: true,
       },
     password: { type: String },
-    confirmpassword:{type: String,required: true}
+    confirmpassword:{type: String,required: true},
+    role: {
+        type: String,
+        enum : ['admin','enduser'],
+        default: 'admin'
+    },
 });
 
 const Product = mongoose.model('Product',productschema)

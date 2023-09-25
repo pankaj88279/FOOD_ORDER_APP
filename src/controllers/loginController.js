@@ -21,14 +21,14 @@ let logincontroller = async (req, res) => {
         if (!isPasswordValid) {
             return res.status(401).json({ msg: 'Invalid password' });
         }
-      const token= jwt.sign({ email: user.email }, process.env.JWT_SECRET)
+      const token= jwt.sign({ email: user.email,role:user.role}, process.env.JWT_SECRET)
         // Password is valid, you can create a JWT token or set a session to manage the user's authentication
         // Here, we are sending a success response
         res.status(200).json({
             msg: 'Login successfully',
-            data: user,
             email: user.email,
-            token:token
+            token:token,
+            role:user.role
         });
     } catch (err) {
         res.status(500).json({

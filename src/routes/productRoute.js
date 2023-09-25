@@ -1,6 +1,7 @@
 const express= require('express');
 const { productcontroller } = require('../controllers/productcontroller');
 const multer = require('multer');
+const { authMiddleware,adminAuth } = require('../middlewere/authmiddilewere');
 
 const productroute=express.Router();
 
@@ -19,7 +20,7 @@ const storage = multer.diskStorage({
   
   const upload = multer({ storage: storage })
 
-productroute.post('/products',upload.single('file'),productcontroller)
+productroute.post('/products',authMiddleware,adminAuth,upload.single('file'),productcontroller)
 
 
 exports.productroute=productroute
